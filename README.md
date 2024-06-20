@@ -2,18 +2,13 @@
 
 This package is meant for reading power system data from different sources into data frames. The format is ispired by the MATPOWER case format. The package will also provide some power system matrices based on the data.
 
-[![CI](https://img.shields.io/github/actions/workflow/status/SINTEF-Power-system-asset-management/SintPowerCase.jl/run_tests.yaml?branch=main&logo=github&label=CI)](https://github.com/SINTEF-Power-system-asset-management/SintPowerCase.jl/actions?query=event%3Apush+branch%3Amain+workflow%3A""Unit+tests"")
+[![CI](https://img.shields.io/github/actions/workflow/status/SINTEF-Power-system-asset-management/SintPowerCase.jl/run_tests.yaml?branch=main&logo=github&label=CI)](https://github.com/SINTEF-Power-system-asset-management/SintPowerCase.jl/actions?query=event%3Apush+branch%3Amain+workflow%3A"Unit+tests")
 [![](https://img.shields.io/badge/docs-latest-blue.svg)](https://sintef-power-system-asset-management.github.io/SintPowerCase.jl/)
 
-<!-- gitlab workflow badges
-![example workflow](https://gitlab.sintef.no/power-system-asset-management/SintPowerCase.jl/badges/main/pipeline.svg)
-![coverage](https://gitlab.sintef.no/power-system-asset-management/SintPowerCase.jl/badges/main/coverage.svg)
-![latest release](https://gitlab.sintef.no/power-system-asset-management/SintPowerCase.jl/-/badges/release.svg)
--->
 
 ## Documentation
 
-Automatically generated documentation can be found at <https://power-system-asset-management.pages.sintef.no/SintPowerCase.jl>.
+Automatically generated documentation can be found at <https://sintef-power-system-asset-management.github.io/SintPowerCase.jl>.
 
 ## Developers guide
 
