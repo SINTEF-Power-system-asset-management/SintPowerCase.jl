@@ -158,7 +158,7 @@ function delete_branch!(mpc::Case, f_bus::String, t_bus::String)
 end
 
 """ Returns the number of lines in the case."""
-function get_n_lines(mpc::Case)::Int64
+function get_n_lines(mpc::Case)::Int
     nrow(mpc.branch)
 end
 

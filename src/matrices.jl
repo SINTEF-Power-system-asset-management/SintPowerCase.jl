@@ -42,7 +42,7 @@ end
         consider_status: Whether or not branch in service status should be
         considered.
 """
-function get_incidence_matrix(case::Case)::SparseMatrixCSC{Int64,Int64}
+function get_incidence_matrix(case::Case)::SparseMatrixCSC{Int,Int}
     A = spzeros(Int, nrow(case.branch), nrow(case.bus))
     for (id, branch) in enumerate(eachrow(case.branch))
         A[id, get_bus_row(case, branch.f_bus)] = 1
@@ -51,10 +51,7 @@ function get_incidence_matrix(case::Case)::SparseMatrixCSC{Int64,Int64}
     return A
 end
 
-function get_incidence_matrix(
-    case::Case,
-    consider_status::Bool,
-)::SparseMatrixCSC{Int64,Int64}
+function get_incidence_matrix(case::Case, consider_status::Bool)::SparseMatrixCSC{Int,Int}
     if consider_status
         return get_incidence_matrix(case)[case.branch[:, :status], :]
     else
@@ -90,7 +87,7 @@ end
 """
     returns the admittance matrix of the system.
 """
-function get_admittance_matrix(case::Case)::SparseMatrixCSC{ComplexF64,Int64}
+function get_admittance_matrix(case::Case)::SparseMatrixCSC{ComplexF64,Int}
     if all(case.branch.b .== 0)
         return get_admittance_matrix(
             get_incidence_matrix(case),
@@ -114,7 +111,7 @@ function get_admittance_matrix(case::Case)::SparseMatrixCSC{ComplexF64,Int64}
 end
 
 function add_branch_to_admittance_matrix!(
-    Y::SparseMatrixCSC{ComplexF64,Int64},
+    Y::SparseMatrixCSC{ComplexF64,Int},
     f_idx::BitVector,
     t_idx::BitVector,
     r::Real,
@@ -128,7 +125,7 @@ function add_branch_to_admittance_matrix!(
 end
 
 function add_branch_to_dc_admittance_matrix!(
-    Y::SparseMatrixCSC{<:Real,Int64},
+    Y::SparseMatrixCSC{<:Real,Int},
     f_idx::BitVector,
     t_idx::BitVector,
     x::Real,
@@ -207,9 +204,9 @@ end
     admittance matrix.
 """
 function get_admittance_matrix(
-    A::SparseMatrixCSC{Int64,Int64},
+    A::SparseMatrixCSC{Int,Int},
     Y_pr::Diagonal{ComplexF64},
-)::SparseMatrixCSC{ComplexF64,Int64}
+)::SparseMatrixCSC{ComplexF64,Int}
     return A' * Y_pr * A
 end
 

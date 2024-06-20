@@ -214,12 +214,12 @@ function to_ppc(mpc::Case)::Dict{String,Any}
 end
 
 """ Returns the number of buses in the case."""
-function get_n_buses(mpc::Case)::Int64
+function get_n_buses(mpc::Case)::Int
     nrow(mpc.bus)
 end
 
 """ Returns the row number of an element given by id"""
-function get_id_idx(mpc::Case, elm::Symbol, id::String)::Int64
+function get_id_idx(mpc::Case, elm::Symbol, id::String)::Int
     row = findall(getfield(mpc, elm).ID .== id)
     if length(row) == 0
         error(string("Bus with ID ", repr(id), " not found."))
@@ -231,6 +231,6 @@ function get_id_idx(mpc::Case, elm::Symbol, id::String)::Int64
 end
 
 """ Returns the row number of a bus given by id"""
-function get_bus_row(mpc::Case, id::String)::Int64
+function get_bus_row(mpc::Case, id::String)::Int
     get_id_idx(mpc, :bus, id)
 end
