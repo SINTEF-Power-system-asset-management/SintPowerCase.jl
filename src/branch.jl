@@ -20,6 +20,27 @@ function push_switch!(mpc::Case, f_bus::String, t_bus::String, branch::DataFrame
 	push_branch_type!(mpc.switch, f_bus, t_bus, branch)
 end
 
+"""
+  Add switches to an existing case.
+"""
+function add_switches(case::Case, switches::Vector{Tuple{String,String}}, closed::Bool;
+                      t_remote::Real=1/3600, t_manual::Real=0.5)
+    f_buses = [s[1] for s in switches]
+    t_buses = [s[2] for s in switches]
+    ns = length(f_buses)
+    append!(
+        case.switch,
+        DataFrame(
+            f_bus = f_buses,
+            t_bus = t_buses,
+            breaker = zeros(Bool, ns),
+            closed = closed ? ones(Bool, ns) : zeros(Bool, ns),
+            t_remote = t_remote * ones(ns),
+            t_manual = t_manual * ones(ns),
+        ),
+    )
+end
+
 function push_transformer!(mpc::Case, f_bus::String, t_bus::String, transformer::DataFrameRow)
 	push_branch_type!(mpc.transformer, f_bus, t_bus, transformer)
 end
